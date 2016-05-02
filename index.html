@@ -1,0 +1,87 @@
+<!-DOCTYPE HTML-->
+<html>
+<head>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" type="text/css"/>
+<link rel="stylesheet" href="css/jquery.mobile.theme-1.4.5.min.css" type="text/css"  />
+<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css" type="text/css" />
+<script type="text/javascript" src="phonegap.js"></script>
+<script src="cordova.js"></script>
+
+<script type="text/javascript" src="js/jquery-2.2.0.min.js" ></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js" ></script>
+<script type="text/javascript">
+
+    var pictureSoure;
+    var destinationType;
+    docuement.addEventListener("deviceready", onDeviceReady,false);
+    function onDeviceReady(){
+        pictureSource0navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinatnationType;
+    }
+    function onPhotoDataSucces(imageData){
+        var smalImage=documet.getElementById('smalImage');
+        smalImage.style.display=('block');
+        smalImage.src="data:Image/jpeg;base64,"+imageData;
+        
+    }
+     function onPhotoURISuccess(imageURI){
+        var smalImage=documet.getElementById('smalImage');
+        smalImage.style.display=('block');
+        smalImage.src=ImageURI;
+        
+    }
+    //A button will call this function
+   function capturePhoto(){
+       //take picture using device camara and retrieve image as base64-encoded string
+       navegator.camara.getPicture(onPhotoDataSuccess,onfail,{quality:50,
+               destinationType:destinationType.DATA_URL       });
+           } 
+        //A button will call this function
+   function capturePhotoEdit(){
+       //take picture using device camara ,allow edit,and retrieveimage as base64-encaded string
+         navegator.camara.getPicture(onPhotoDataSuccess,onfail,{quality:20,allowEdit; true,
+               destinationType:destinationType.DATA_URL       });
+           }    
+        //A button will call this function
+   function getPhoto(source){
+       //retrieve image file location from specifiel source
+         navegator.camara.getPicture(onPhotoURIDataSuccess,onfail,{quality:50,
+               destinationType:destinationType.FILE_URL,
+           sourceType.source});
+           } 
+           //calledt if something bad happens.
+           //
+             function onFail(message){
+     alert('falled because: '+message);
+           } 
+</script>
+
+</head>
+<body>
+<div data-role="page" id="principal">
+	<div data-role="header">
+		<h1>Manejo de camara</h1>
+	</div>
+        <!--<div data-role="content">
+            <input type="button" id="capFoto" onclick="capturePhoto();" value="Captura fot"/>
+            <input type="button" id="capFotoEdit" onclick="capturePhotoedit();" value="Editar Foto"/>
+            <input type="button" id="obtFotoLib" onclick="getPhoto(pictureSource.PHONELIBRARY);" value="Obtener de Galeria"/>
+            <input type="button" id="obtFotoAlb" onclick="getPhoto(pictureSource.SAVEDPHONTOALBUM);" value="Obtener de Album"/>
+            <img style="display:none; width:60px; height:60px;" id="smallImage" src=""/>
+            <img style="display:none;" id="largeImage" src=""/>
+        </div>-->
+    <div data-role="content">
+        <p>Accesando a camara</p>
+        <button onclick="capturePhoto();">Capture Photo</button> <br>
+        <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+        <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button> <br>
+        <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button> <br>
+        <img style="display:none; width:60px; height:60px;" id="smallImage" src=""/>
+        <img style="display:none;" id="largeImage" src=""/>
+  	</div>
+	<div data-role="footer">
+		<p>pie de página</p>
+	</div>
+</div>
+</body>
+</html>
